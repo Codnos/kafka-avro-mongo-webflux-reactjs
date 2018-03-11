@@ -34,6 +34,16 @@
             <artifactId>mongodb-driver</artifactId>
             <version>3.6.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>3.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-client</artifactId>
+            <version>3.9.3</version>
+        </dependency>
     </dependencies>
 
     <build>
