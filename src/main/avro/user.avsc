@@ -1,0 +1,10 @@
+{"namespace": "com.codnos",
+ "type": "record",
+ "name": "User",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "favorite_color", "type": ["string", "null"]},
+     {"name": "salary",  "type": ["int", "null"]},
+     {"name": "salary_precision", "type": ["int", "null"]}
+ ]
+}
