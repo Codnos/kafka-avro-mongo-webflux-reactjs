@@ -50,8 +50,8 @@ public class UserConsumer {
         Properties props = new Properties();
         props.put("bootstrap.servers", brokers);
         props.put("group.id", groupId);
-        props.put("auto.commit.enable", "false");
-        props.put("auto.offset.reset", "earliest");
+        props.put("auto.commit.enable", "true");
+        props.put("auto.offset.reset", "latest");
         props.put("schema.registry.url", schemaRegistryUrl);
         props.put("specific.avro.reader", true);
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");

@@ -4,7 +4,16 @@
  "fields": [
      {"name": "name", "type": "string"},
      {"name": "favorite_color", "type": ["string", "null"]},
-     {"name": "salary",  "type": ["int", "null"]},
-     {"name": "salary_precision", "type": ["int", "null"]}
+     {"name": "salary_precision", "type": ["int", "null"]},
+     {"name": "salary_structure", "type": {"type": "array", "items": "string"}},
+     {
+        "name": "salaries",
+        "type": {
+                  "type": "map",
+                  "values": {
+                              "type": "array", "items": "long"
+                            }
+                }
+     }
  ]
 }
