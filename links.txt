@@ -20,3 +20,5 @@ https://docs.spring.io/spring-data/mongodb/docs/1.2.0.RELEASE/reference/html/mon
 http://www.baeldung.com/spring-data-mongodb-projections-aggregations
 
 http://justincalleja.com/2016/04/17/serving-a-webpack-bundle-in-spring-boot/
+
+curl -X PUT http://localhost:8081/config -d '{"compatibility": "NONE"}' -H "Content-Type:application/json"
