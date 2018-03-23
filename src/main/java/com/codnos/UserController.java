@@ -12,7 +12,12 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/users")
-    public Flux<MongoUser> getAllTweets() {
+    public Flux<MongoUser> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/users-without-salaries")
+    public Flux<MongoUser> getAllUsersWithoutSalaries() {
+        return userRepository.findAllExcludingSalaries();
     }
 }
