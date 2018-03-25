@@ -11,12 +11,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping("/api/users")
     public Flux<MongoUser> getAllUsers() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users-without-salaries")
+    @GetMapping("/api/users-without-salaries")
     public Flux<MongoUser> getAllUsersWithoutSalaries() {
         return userRepository.findAllExcludingSalaries();
     }
