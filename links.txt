@@ -24,3 +24,21 @@ http://justincalleja.com/2016/04/17/serving-a-webpack-bundle-in-spring-boot/
 curl -X PUT http://localhost:8081/config -d '{"compatibility": "NONE"}' -H "Content-Type:application/json"
 
 https://github.com/facebook/create-react-app#creating-an-app
+
+http://blog.dbain.com/2016/11/dear-future-reactjs-using-self-you-will.html:
+
+npm i babel-polyfill --save-dev
+.....
+module.exports = {
+  ...,
+  entry: [
+    'webpack-hot-middleware/client',
+    'babel-polyfill',
+    './app/client.js'
+  ],
+......
+import 'react-toolbox/lib/commons.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'babel-polyfill';
+import App from './App.js';
