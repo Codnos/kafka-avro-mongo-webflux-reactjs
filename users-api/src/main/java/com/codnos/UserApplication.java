@@ -19,7 +19,6 @@ public class UserApplication {
 
     @Bean
     public RouterFunction<ServerResponse> routingFunction() {
-        return resources("/webjars/**", new ClassPathResource("classpath:/META-INF/resources/webjars/"))
-                .and(resources("/**", new ClassPathResource("public/")));
+        return resources("/{spring:(?!api)}/**", new ClassPathResource("public/"));
     }
 }
