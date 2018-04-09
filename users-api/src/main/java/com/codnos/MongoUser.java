@@ -1,5 +1,6 @@
 package com.codnos;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Document(collection = "users")
+@JsonSerialize(using = UserConverter.class)
 public class MongoUser {
     @Id
     private String id;
