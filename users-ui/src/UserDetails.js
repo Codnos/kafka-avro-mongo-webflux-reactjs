@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Table, Column, Cell} from 'fixed-data-table-2';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
