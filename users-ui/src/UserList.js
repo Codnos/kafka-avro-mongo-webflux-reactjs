@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import {Table, Column, Cell} from 'fixed-data-table-2';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
+import { Route, Link } from "react-router-dom";
+import UserDetails from './UserDetails.js';
 
 class UsersList extends Component {
 
@@ -25,6 +27,12 @@ class UsersList extends Component {
 
   render() {
     return (
+        <div>
+        <Route path={`${this.props.match.url}/:userId`} component={UserDetails} />
+        <Route
+          exact
+          path={this.props.match.url}
+          render={() =>
           <Table
               rowHeight={50}
               rowMaxHeight={150}
@@ -41,7 +49,18 @@ class UsersList extends Component {
                 )}
                 width={150}
               />
+              <Column
+                header={<Cell>Col 3</Cell>}
+                cell={({rowIndex, ...props}) => (
+                  <Cell {...props}>
+                    <Link to={`${this.props.match.url}/${this.state.rows[rowIndex]['id']}`}>Details</Link>
+                  </Cell>
+                )}
+                width={150}
+              />
             </Table>
+            }/>
+        </div>
     );
   }
 }

@@ -8,9 +8,10 @@ class UserDetails extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { rows: []};
+    console.log(props);
+    this.state = { userData: []};
     const that = this;
-  fetch('/api/users')
+  fetch(`/api/user/${this.props.match.params.userId}`)
     .then(function(response) {
       if (response.status >= 400) {
         throw new Error("Bad response from server");
@@ -19,60 +20,35 @@ class UserDetails extends Component {
     })
     .then(function(data) {
       that.setState = that.setState.bind(that);
-      that.setState({ rows: data });
+      console.log(data);
+      that.setState({ userData: data });
     });
   }
 
   render() {
     return (
+    <div>
+        <p>Id: {this.state.userData.id}</p>
+        <p>Name: {this.state.userData.name}</p>
           <Table
               rowHeight={50}
               rowMaxHeight={150}
-              rowsCount={this.state.rows.length}
+              rowsCount={0}
               width={800}
               maxHeight={5000}
               headerHeight={50}>
+
               <Column
                 header={<Cell>Col 3</Cell>}
                 cell={({rowIndex, ...props}) => (
                   <Cell {...props}>
-                    {this.state.rows[rowIndex]['name']}
+                    Val
                   </Cell>
                 )}
                 width={150}
-              />
-              <Column
-                header={<Cell>Col 3</Cell>}
-                cell={({rowIndex, ...props}) => (
-                  <Cell {...props}>
-                    {this.state.rows[rowIndex]['salaryPrecision']}
-                  </Cell>
-                )}
-                width={150}
-              />
-              <Column
-                header={<Cell>Col 3</Cell>}
-                cell={({rowIndex, ...props}) => (
-                  <Cell {...props}>
-                    {this.state.rows[rowIndex]['salaryStructure']}
-                  </Cell>
-                )}
-                width={150}
-              />
-              <Column
-                header={<Cell>Col 3</Cell>}
-                cell={({rowIndex, ...props}) => (
-                  <Cell {...props}> {
-                  this.state.rows && this.state.rows[rowIndex]['salaries'] && Object.keys(this.state.rows[rowIndex]['salaries']).map((item) => {return (
-                    <span>{item + ': ' + this.state.rows[rowIndex]['salaries'][item].map((x) => {return x + ', '})}</span>
-                  );
-                  })
-                  }
-                  </Cell>
-                )}
-                width={350}
               />
             </Table>
+    </div>
     );
   }
 }
