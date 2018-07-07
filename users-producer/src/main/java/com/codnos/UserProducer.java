@@ -33,7 +33,7 @@ public class UserProducer {
 
         Map<String, List<Double>> originalSalaries = new HashMap<>();
         originalSalaries.put("Facebook", asList(45.0012d, 56.2357774d, 2345.000d));
-        originalSalaries.put("Google", asList(45.0012d, 56.2357774d, 2345.000d));
+        originalSalaries.put("Google", asList(145.0012d, 256.2357774d, 32345.000d));
 
         Map<CharSequence, List<Long>> transformedSalaries = new HashMap<>(originalSalaries.size());
 
