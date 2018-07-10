@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Table, Column, Cell} from 'fixed-data-table-2';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import UserDetails from './UserDetails.js';
 
 class UsersList extends Component {
@@ -28,6 +28,7 @@ class UsersList extends Component {
   render() {
     return (
         <div>
+        <Switch>
         <Route path={`${this.props.match.url}/:userId`} component={UserDetails} />
         <Route
           exact
@@ -60,6 +61,7 @@ class UsersList extends Component {
               />
             </Table>
             }/>
+            </Switch>
         </div>
     );
   }
