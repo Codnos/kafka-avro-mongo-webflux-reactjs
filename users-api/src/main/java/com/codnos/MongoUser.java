@@ -1,6 +1,7 @@
 package com.codnos;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -20,7 +21,7 @@ public class MongoUser {
     private List<String> salaryStructure;
 
 
-    private Map<String, List<Long>> salaries;
+    private Map<String, List<Binary>> salaries;
 
     @Field("salary_precision")
     private Integer salaryPrecision;
@@ -61,11 +62,11 @@ public class MongoUser {
         this.salaryStructure = salaryStructure;
     }
 
-    public Map<String, List<Long>> getSalaries() {
+    public Map<String, List<Binary>> getSalaries() {
         return salaries;
     }
 
-    public void setSalaries(Map<String, List<Long>> salaries) {
+    public void setSalaries(Map<String, List<Binary>> salaries) {
         this.salaries = salaries;
     }
 }

@@ -8,6 +8,7 @@ import scala.Char;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,15 +36,15 @@ public class UserProducer {
         originalSalaries.put("Facebook", asList(45.0012d, 56.2357774d, 2345.000d));
         originalSalaries.put("Google", asList(145.0012d, 256.2357774d, 32345.000d));
 
-        Map<CharSequence, List<Long>> transformedSalaries = new HashMap<>(originalSalaries.size());
+        Map<CharSequence, List<ByteBuffer>> transformedSalaries = new HashMap<>(originalSalaries.size());
 
         for (Map.Entry<String, List<Double>> salaryInfo : originalSalaries.entrySet()) {
             String company = salaryInfo.getKey();
-            List<Long> bigSalaries = new ArrayList<>(salaryInfo.getValue().size());
+            List<ByteBuffer> bigSalaries = new ArrayList<>(salaryInfo.getValue().size());
             for (Double salary : salaryInfo.getValue()) {
                 BigDecimal x = new BigDecimal(salary).setScale(10, RoundingMode.HALF_UP);
                 BigDecimal rescaled = x.setScale(TARGET_SCALE);
-                bigSalaries.add(rescaled.unscaledValue().longValueExact());
+                bigSalaries.add(ByteBuffer.wrap(rescaled.unscaledValue().toByteArray()));
             }
             transformedSalaries.put(company, bigSalaries);
         }

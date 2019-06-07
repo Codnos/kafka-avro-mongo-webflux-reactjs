@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'react-table/react-table.css';
+import ReactTable from 'react-table';
 import ReactEcharts from "echarts-for-react";
 import 'echarts-gl';
 
@@ -113,8 +115,29 @@ constructor(props) {
 
   render() {
     const { data, pages, loading } = this.state;
+    if (loading) {return (<div>Loading</div>);}
+    else {
+    const originalColumns = ["Place"].concat(data['salaryStructure'])
+    const columns = originalColumns.map((c, idx) => {
+        let x = {
+            Header: c,
+            id: c,
+            accessor: d => d[idx]
+        };
+        return x;
+    });
+    const values = Object.keys(data.salaries).map(key => [key].concat(data.salaries[key]));
     return (
     <div>
+        <div>
+            <p>Id: {data.id}</p>
+            <p>Name: {data.name}</p>
+
+        <ReactTable
+          data={values}
+          columns={columns}
+        />
+        </div>
         <ReactEcharts
           option={this.getOption()}
           notMerge={true}
@@ -125,6 +148,7 @@ constructor(props) {
           lazyUpdate={true}/>
     </div>
         );
+     }
   }
 }
 

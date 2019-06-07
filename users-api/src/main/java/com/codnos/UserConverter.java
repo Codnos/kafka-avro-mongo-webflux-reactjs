@@ -3,9 +3,12 @@ package com.codnos;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import org.bson.types.Binary;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
@@ -29,11 +32,11 @@ public class UserConverter extends JsonSerializer<MongoUser> {
         if (precision != null && mongoUser.getSalaries() != null) {
             jsonGenerator.writeFieldName("salaries");
             jsonGenerator.writeStartObject();
-            for (Map.Entry<String, List<Long>> item : mongoUser.getSalaries().entrySet()) {
+            for (Map.Entry<String, List<Binary>> item : mongoUser.getSalaries().entrySet()) {
                 jsonGenerator.writeFieldName(item.getKey());
                 jsonGenerator.writeStartArray();
-                for (Long value : item.getValue()) {
-                    jsonGenerator.writeNumber(BigDecimal.valueOf(value, precision));
+                for (Binary value : item.getValue()) {
+                    jsonGenerator.writeNumber(new BigDecimal(new BigInteger(value.getData()), precision));
                 }
                 jsonGenerator.writeEndArray();
             }

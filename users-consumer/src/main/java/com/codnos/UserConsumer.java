@@ -8,11 +8,15 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.bson.Document;
+import org.bson.types.Binary;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class UserConsumer {
     public static void main(String[] args) {
@@ -33,10 +37,14 @@ public class UserConsumer {
             ConsumerRecords<String, User> records = consumer.poll(1000);
             List<Document> toInsert = new ArrayList<>();
             for (ConsumerRecord<String, User> record : records) {
-                String json = record.value().toString();
-                Document document = Document.parse(json);
+                User value = record.value();
+                Document document = new Document();
+                document.put("name", value.getName().toString());
+                document.put("salary_precision", value.getSalaryPrecision());
+                document.put("salary_structure", toList(value.getSalaryStructure()));
+                document.put("salaries", toMapOfBinaries(value.getSalaries()));
                 toInsert.add(document);
-                System.out.println("Inserting " + json);
+                System.out.println("Inserting " + document);
 //                collection.insertOne(document);
             }
             if (!toInsert.isEmpty()) {
@@ -44,6 +52,18 @@ public class UserConsumer {
                 System.out.println("Inserted " + toInsert.size() + " documents");
             }
         }
+    }
+
+    private static Map<String, List<Binary>> toMapOfBinaries(Map<CharSequence, List<ByteBuffer>> salaries) {
+        return salaries.entrySet().stream().collect(Collectors.toMap(e -> e.getKey().toString(), e -> getBinaries(e.getValue())));
+    }
+
+    private static List<Binary> getBinaries(List<ByteBuffer> value) {
+        return value.stream().map(b -> new Binary(b.array())).collect(Collectors.toList());
+    }
+
+    private static List<String> toList(List<CharSequence> salaryStructure) {
+        return salaryStructure.stream().map(CharSequence::toString).collect(Collectors.toList());
     }
 
     private static Properties createConsumerConfig(String brokers, String groupId, String schemaRegistryUrl) {

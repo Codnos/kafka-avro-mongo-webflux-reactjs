@@ -11,7 +11,7 @@
         "type": {
                   "type": "map",
                   "values": {
-                              "type": "array", "items": "long"
+                              "type": "array", "items": "bytes"
                             }
                 }
      }

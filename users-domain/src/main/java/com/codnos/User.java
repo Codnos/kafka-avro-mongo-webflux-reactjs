@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class User extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -346081774447639825L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"com.codnos\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favorite_color\",\"type\":[\"string\",\"null\"]},{\"name\":\"salary_precision\",\"type\":[\"int\",\"null\"]},{\"name\":\"salary_structure\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"salaries\",\"type\":{\"type\":\"map\",\"values\":{\"type\":\"array\",\"items\":\"long\"}}}]}");
+  private static final long serialVersionUID = -5404561182245120226L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"com.codnos\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favorite_color\",\"type\":[\"string\",\"null\"]},{\"name\":\"salary_precision\",\"type\":[\"int\",\"null\"]},{\"name\":\"salary_structure\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"salaries\",\"type\":{\"type\":\"map\",\"values\":{\"type\":\"array\",\"items\":\"bytes\"}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -55,7 +55,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   @Deprecated public java.lang.CharSequence favorite_color;
   @Deprecated public java.lang.Integer salary_precision;
   @Deprecated public java.util.List<java.lang.CharSequence> salary_structure;
-  @Deprecated public java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> salaries;
+  @Deprecated public java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> salaries;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -72,7 +72,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * @param salary_structure The new value for salary_structure
    * @param salaries The new value for salaries
    */
-  public User(java.lang.CharSequence name, java.lang.CharSequence favorite_color, java.lang.Integer salary_precision, java.util.List<java.lang.CharSequence> salary_structure, java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> salaries) {
+  public User(java.lang.CharSequence name, java.lang.CharSequence favorite_color, java.lang.Integer salary_precision, java.util.List<java.lang.CharSequence> salary_structure, java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> salaries) {
     this.name = name;
     this.favorite_color = favorite_color;
     this.salary_precision = salary_precision;
@@ -101,7 +101,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     case 1: favorite_color = (java.lang.CharSequence)value$; break;
     case 2: salary_precision = (java.lang.Integer)value$; break;
     case 3: salary_structure = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 4: salaries = (java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>>)value$; break;
+    case 4: salaries = (java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -174,7 +174,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * Gets the value of the 'salaries' field.
    * @return The value of the 'salaries' field.
    */
-  public java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> getSalaries() {
+  public java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> getSalaries() {
     return salaries;
   }
 
@@ -182,7 +182,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * Sets the value of the 'salaries' field.
    * @param value the value to set.
    */
-  public void setSalaries(java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> value) {
+  public void setSalaries(java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> value) {
     this.salaries = value;
   }
 
@@ -222,7 +222,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     private java.lang.CharSequence favorite_color;
     private java.lang.Integer salary_precision;
     private java.util.List<java.lang.CharSequence> salary_structure;
-    private java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> salaries;
+    private java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> salaries;
 
     /** Creates a new Builder */
     private Builder() {
@@ -445,7 +445,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * Gets the value of the 'salaries' field.
       * @return The value.
       */
-    public java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> getSalaries() {
+    public java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> getSalaries() {
       return salaries;
     }
 
@@ -454,7 +454,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'salaries'.
       * @return This builder.
       */
-    public com.codnos.User.Builder setSalaries(java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>> value) {
+    public com.codnos.User.Builder setSalaries(java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>> value) {
       validate(fields()[4], value);
       this.salaries = value;
       fieldSetFlags()[4] = true;
@@ -489,7 +489,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
         record.favorite_color = fieldSetFlags()[1] ? this.favorite_color : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.salary_precision = fieldSetFlags()[2] ? this.salary_precision : (java.lang.Integer) defaultValue(fields()[2]);
         record.salary_structure = fieldSetFlags()[3] ? this.salary_structure : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[3]);
-        record.salaries = fieldSetFlags()[4] ? this.salaries : (java.util.Map<java.lang.CharSequence,java.util.List<java.lang.Long>>) defaultValue(fields()[4]);
+        record.salaries = fieldSetFlags()[4] ? this.salaries : (java.util.Map<java.lang.CharSequence,java.util.List<java.nio.ByteBuffer>>) defaultValue(fields()[4]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
