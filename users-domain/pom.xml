@@ -10,7 +10,7 @@
 
     <parent>
         <groupId>com.codnos.examples</groupId>
-        <artifactId>kafka-avro-mongo-spark</artifactId>
+        <artifactId>kafka-avro-mongo-webflux-reactjs</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 

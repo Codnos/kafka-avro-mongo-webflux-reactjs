@@ -25,7 +25,7 @@ headers = {"Accept": "application/avro"}
 request = urllib.request.Request(url, headers=headers)
 response = urllib.request.urlopen(request)
 
-schema = avro.schema.Parse(open("/Users/ligasgr/wrk/kafka-avro-mongo-spark/users-domain/src/main/avro/user.avsc", "r").read())
+schema = avro.schema.Parse(open("users-domain/src/main/avro/user.avsc", "r").read())
 
 resp = response.read()
 bytes_reader = io.BytesIO(resp)
