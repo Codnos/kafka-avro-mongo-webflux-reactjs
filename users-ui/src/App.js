@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import logo from './logo.svg';
 import UserList from './UserList.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -21,6 +22,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+         <div className="App-header">
+            <img className="App-logo" src={logo}></img>
+            <div className="App-title">Users-UI</div>
+         </div>
          <Router>
             <div>
               <ul>
